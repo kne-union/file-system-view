@@ -1,0 +1,63 @@
+{
+  "isFull": false,
+  "list": [
+    {
+      "title": "基础用法",
+      "description": "展示完整的文件系统浏览功能，包含文件夹展开收起、文件类型图标、hover操作菜单等特性",
+      "code": "./base.js",
+      "scope": [
+        {
+          "name": "_FileSystemView",
+          "packageName": "@kne/current-lib_file-system-view",
+          "importStatement": "import * as _FileSystemView from \"@kne/file-system-view\""
+        },
+        {
+          "packageName": "@kne/current-lib_file-system-view/dist/index.css",
+          "importStatement": "import \"@kne/file-system-view/dist/index.css\""
+        },
+        {
+          "name": "antd",
+          "packageName": "antd",
+          "importStatement": "import * as antd from \"antd\""
+        }
+      ]
+    },
+    {
+      "title": "简单列表",
+      "description": "不包含操作菜单的简单文件列表示例",
+      "code": "./simple.js",
+      "scope": [
+        {
+          "name": "_FileSystemView",
+          "packageName": "@kne/current-lib_file-system-view",
+          "importStatement": "import * as _FileSystemView from \"@kne/file-system-view\""
+        },
+        {
+          "packageName": "@kne/current-lib_file-system-view/dist/index.css",
+          "importStatement": "import \"@kne/file-system-view/dist/index.css\""
+        }
+      ]
+    },
+    {
+      "title": "受控模式",
+      "description": "通过 expandedKeys 和 selectedKey 控制展开和选中状态，可配合外部按钮实现展开全部/收起全部功能",
+      "code": "./controlled.js",
+      "scope": [
+        {
+          "name": "_FileSystemView",
+          "packageName": "@kne/current-lib_file-system-view",
+          "importStatement": "import * as _FileSystemView from \"@kne/file-system-view\""
+        },
+        {
+          "packageName": "@kne/current-lib_file-system-view/dist/index.css",
+          "importStatement": "import \"@kne/file-system-view/dist/index.css\""
+        },
+        {
+          "name": "antd",
+          "packageName": "antd",
+          "importStatement": "import * as antd from \"antd\""
+        }
+      ]
+    }
+  ]
+}

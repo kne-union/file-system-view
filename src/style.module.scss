@@ -1,0 +1,154 @@
+.file-system-view {
+  font-size: 14px;
+  user-select: none;
+
+  :global {
+    .ant-tree {
+      background: transparent;
+
+      .ant-tree-treenode {
+        padding: 0;
+        width: 100%;
+        position: relative;
+
+        &:before {
+          bottom: 0;
+        }
+
+        .ant-tree-node-content-wrapper {
+          padding: 0;
+          flex: 1;
+          min-width: 0;
+
+          &:hover {
+            background: transparent;
+          }
+        }
+
+        .ant-tree-switcher {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 10px;
+          flex-shrink: 0;
+
+          &:before {
+            display: none;
+          }
+        }
+      }
+    }
+
+    // 层级缩进样式
+    .ant-tree-list-holder-inner {
+      .ant-tree-treenode {
+        padding-left: 0;
+      }
+    }
+
+    // 连接线样式
+    .ant-tree-switcher-line-icon {
+      color: #d9d9d9;
+    }
+
+    // 不同层级的视觉区分
+    .ant-tree-node-content-wrapper {
+      .tree-node {
+        border-left: 2px solid transparent;
+        transition: all 0.2s ease;
+      }
+    }
+
+    // 层级颜色渐变
+    .ant-tree-treenode {
+      &[style*='padding-left: 0px'],
+      &:first-child {
+        .tree-node {
+          background: rgba(0, 0, 0, 0.02);
+        }
+      }
+    }
+  }
+}
+
+.tree-node {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  min-height: 28px;
+  width: 100%;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.04);
+
+    .action-btn {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.node-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  flex-shrink: 0;
+
+  :global {
+    .anticon {
+      font-size: 14px;
+    }
+  }
+}
+
+.node-title {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #333;
+  font-size: 13px;
+  display: flex;
+  min-width: 0;
+}
+
+.node-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.node-ext {
+  flex-shrink: 0;
+}
+
+.action-btn {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  margin-left: auto;
+  padding: 0 2px;
+  height: 20px;
+  width: 20px;
+  flex-shrink: 0;
+  color: #999;
+
+  &:hover {
+    color: #1677ff;
+    background: rgba(22, 119, 255, 0.1);
+  }
+}
+
+.empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+}
