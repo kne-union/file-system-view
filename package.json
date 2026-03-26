@@ -1,7 +1,7 @@
 {
   "name": "@kne/file-system-view",
   "version": "0.1.0",
-  "description": "用来显示一个文件结构",
+  "description": "A React component for displaying file directory structure with tree view, file type icons and context menu",
   "syntax": {
     "esmodules": true
   },
@@ -46,7 +46,18 @@
     "type": "git",
     "url": "git+https://github.com/kne-union/file-system-view.git"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "antd",
+    "file-tree",
+    "file-system",
+    "directory-tree",
+    "tree-view",
+    "file-icon",
+    "context-menu",
+    "i18n",
+    "component"
+  ],
   "author": "linzp",
   "license": "ISC",
   "bugs": {
@@ -79,7 +90,6 @@
   "devDependencies": {
     "@kne/microbundle": "^0.15.5",
     "@kne/modules-dev": "^2.0.33",
-    "@phosphor-icons/react": "^2.1.10",
     "antd": "^6.3.4",
     "cross-env": "^7.0.3",
     "husky": "^9.0.11",

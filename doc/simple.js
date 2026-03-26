@@ -9,7 +9,10 @@ const fileData = [
 const SimpleExample = () => {
   return (
     <div style={{ padding: 24, background: '#fafafa', borderRadius: 8 }}>
-      <FileSystemView data={fileData} />
+      <FileSystemView 
+        data={fileData} 
+        onFileClick={(data, key) => console.log('点击文件:', key)}
+      />
     </div>
   );
 };

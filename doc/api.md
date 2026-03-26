@@ -7,6 +7,7 @@
 | defaultExpandAll | `boolean` | `false` | 是否默认展开所有目录 |
 | expandedKeys | `string[]` | - | （受控）展开的节点 key 数组 |
 | onExpand | `(keys: string[], info: { node, expanded, nativeEvent }) => void` | - | 展开/收起节点时的回调 |
+| onFileClick | `(data: FileItem, key: string) => void` | - | 点击文件时的回调 |
 
 ### FileItem
 
@@ -33,5 +34,7 @@
 - **代码文件**: js, jsx, ts, tsx, json, css, scss, less, html, vue, py, java, go, rs
 - **文档文件**: md, txt, pdf, doc, docx, xls, xlsx
 - **图片文件**: png, jpg, jpeg, gif, svg, webp
+- **视频文件**: mp4, avi, mov, wmv, mkv, webm, flv
+- **音频文件**: mp3, wav, flac, aac, ogg, wma
 - **压缩文件**: zip, rar, 7z, tar, gz
 - **其他**: 默认文件图标

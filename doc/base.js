@@ -107,6 +107,7 @@ const BaseExample = () => {
         data={fileData}
         menuItems={menuItems}
         defaultExpandAll
+        onFileClick={(data, key) => message.info(`点击文件: ${key}`)}
       />
     </div>
   );

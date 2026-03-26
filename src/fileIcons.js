@@ -1,0 +1,85 @@
+import {
+  Folder,
+  FolderOpen,
+  File,
+  FileText,
+  FilePdf,
+  FileDoc,
+  FileXls,
+  FilePng,
+  FileJpg,
+  FileGif,
+  FileSvg,
+  FileCode,
+  FileZip,
+  FileMarkdown,
+  FileJs,
+  FileJsx,
+  FileTs,
+  FileTsx,
+  FileCss,
+  FileHtml,
+  FileVue,
+  FilePy,
+  FileRs,
+  FileArchive,
+  FileVideo,
+  FileAudio
+} from './icons';
+
+// 文件类型图标映射（图标 + 颜色）
+const fileTypeIcons = {
+  // 文档类型
+  md: { icon: FileMarkdown, color: '#083fa6' },
+  txt: { icon: FileText, color: '#6b7280' },
+  pdf: { icon: FilePdf, color: '#d32f2f' },
+  doc: { icon: FileDoc, color: '#2b579a' },
+  docx: { icon: FileDoc, color: '#2b579a' },
+  xls: { icon: FileXls, color: '#217346' },
+  xlsx: { icon: FileXls, color: '#217346' },
+  // 图片类型
+  png: { icon: FilePng, color: '#a855f7' },
+  jpg: { icon: FileJpg, color: '#f97316' },
+  jpeg: { icon: FileJpg, color: '#f97316' },
+  gif: { icon: FileGif, color: '#ec4899' },
+  svg: { icon: FileSvg, color: '#fbbf24' },
+  webp: { icon: FilePng, color: '#22c55e' },
+  // 视频类型
+  mp4: { icon: FileVideo, color: '#ef4444' },
+  avi: { icon: FileVideo, color: '#ef4444' },
+  mov: { icon: FileVideo, color: '#ef4444' },
+  wmv: { icon: FileVideo, color: '#ef4444' },
+  mkv: { icon: FileVideo, color: '#ef4444' },
+  webm: { icon: FileVideo, color: '#ef4444' },
+  flv: { icon: FileVideo, color: '#ef4444' },
+  // 音频类型
+  mp3: { icon: FileAudio, color: '#8b5cf6' },
+  wav: { icon: FileAudio, color: '#8b5cf6' },
+  flac: { icon: FileAudio, color: '#8b5cf6' },
+  aac: { icon: FileAudio, color: '#8b5cf6' },
+  ogg: { icon: FileAudio, color: '#8b5cf6' },
+  wma: { icon: FileAudio, color: '#8b5cf6' },
+  // 代码类型
+  js: { icon: FileJs, color: '#f7df1e' },
+  jsx: { icon: FileJsx, color: '#61dafb' },
+  ts: { icon: FileTs, color: '#3178c6' },
+  tsx: { icon: FileTsx, color: '#3178c6' },
+  json: { icon: FileCode, color: '#cbcb41' },
+  css: { icon: FileCss, color: '#264de4' },
+  scss: { icon: FileCss, color: '#cc6699' },
+  less: { icon: FileCss, color: '#1d365d' },
+  html: { icon: FileHtml, color: '#e34f26' },
+  vue: { icon: FileVue, color: '#42b883' },
+  py: { icon: FilePy, color: '#3776ab' },
+  java: { icon: FileCode, color: '#ed8b00' },
+  go: { icon: FileCode, color: '#00add8' },
+  rs: { icon: FileRs, color: '#dea584' },
+  // 压缩文件
+  zip: { icon: FileZip, color: '#78909c' },
+  rar: { icon: FileArchive, color: '#5c6bc0' },
+  '7z': { icon: FileArchive, color: '#5c6bc0' },
+  tar: { icon: FileArchive, color: '#8d6e63' },
+  gz: { icon: FileArchive, color: '#8d6e63' }
+};
+
+export default fileTypeIcons;

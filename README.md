@@ -2,7 +2,7 @@
 
 ### 描述
 
-用来显示一个文件结构
+A React component for displaying file directory structure with tree view, file type icons and context menu
 
 ### 安装
 
@@ -12,64 +12,15 @@ npm i --save @kne/file-system-view
 
 ### 概述
 
-# FileSystemView 文件系统视图组件
-
 一个用于浏览文件目录结构的 React 组件，支持树形展示、文件夹展开收起、文件类型图标、hover 操作菜单等功能。
 
-## 特性
+### 特性
 
 - 📁 **树形结构** - 支持多级目录展示，文件夹可展开/收起，带有层级连接线
 - 🎨 **文件图标** - 自动识别 20+ 种文件类型，显示对应图标
 - ⚡ **操作菜单** - hover 显示操作按钮，支持自定义菜单项
 - 🌐 **国际化** - 内置中英文支持
 - 📱 **美观易用** - 精心设计的交互和视觉样式
-
-## 安装
-
-```bash
-npm install @kne/file-system-view
-# 或
-yarn add @kne/file-system-view
-```
-
-## 依赖
-
-- react >= 16.8
-- antd >= 5
-
-## 快速开始
-
-```jsx
-import FileSystemView from '@kne/file-system-view';
-import '@kne/file-system-view/dist/index.css';
-
-const data = [
-  {
-    name: 'src',
-    type: 'directory',
-    children: [
-      { name: 'index.js', type: 'file' },
-      { name: 'utils.js', type: 'file' },
-    ],
-  },
-  { name: 'package.json', type: 'file' },
-];
-
-const menuItems = [
-  { label: '打开', onClick: (data, key) => console.log('打开', key) },
-  { label: '删除', danger: true },
-];
-
-function App() {
-  return (
-    <FileSystemView
-      data={data}
-      menuItems={menuItems}
-      defaultExpandAll
-    />
-  );
-}
-```
 
 
 ### 示例
@@ -190,6 +141,7 @@ const BaseExample = () => {
         data={fileData}
         menuItems={menuItems}
         defaultExpandAll
+        onFileClick={(data, key) => message.info(&#96;点击文件: ${key}&#96;)}
       />
     </div>
   );
@@ -215,7 +167,10 @@ const fileData = [
 const SimpleExample = () => {
   return (
     <div style={{ padding: 24, background: '#fafafa', borderRadius: 8 }}>
-      <FileSystemView data={fileData} />
+      <FileSystemView 
+        data={fileData} 
+        onFileClick={(data, key) => console.log('点击文件:', key)}
+      />
     </div>
   );
 };
@@ -302,6 +257,7 @@ render(<ControlledExample />);
 | defaultExpandAll | `boolean` | `false` | 是否默认展开所有目录 |
 | expandedKeys | `string[]` | - | （受控）展开的节点 key 数组 |
 | onExpand | `(keys: string[], info: { node, expanded, nativeEvent }) => void` | - | 展开/收起节点时的回调 |
+| onFileClick | `(data: FileItem, key: string) => void` | - | 点击文件时的回调 |
 
 ### FileItem
 
@@ -328,5 +284,7 @@ render(<ControlledExample />);
 - **代码文件**: js, jsx, ts, tsx, json, css, scss, less, html, vue, py, java, go, rs
 - **文档文件**: md, txt, pdf, doc, docx, xls, xlsx
 - **图片文件**: png, jpg, jpeg, gif, svg, webp
+- **视频文件**: mp4, avi, mov, wmv, mkv, webm, flv
+- **音频文件**: mp3, wav, flac, aac, ogg, wma
 - **压缩文件**: zip, rar, 7z, tar, gz
 - **其他**: 默认文件图标
