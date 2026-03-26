@@ -91,6 +91,14 @@
       visibility: visible;
     }
   }
+
+  &.selected {
+    background: rgba(22, 119, 255, 0.12);
+
+    &:hover {
+      background: rgba(22, 119, 255, 0.16);
+    }
+  }
 }
 
 .node-icon {

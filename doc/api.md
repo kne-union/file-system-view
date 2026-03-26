@@ -6,6 +6,7 @@
 | menuItems | `MenuItem[]` | - | 操作菜单项配置，不传则不显示操作按钮 |
 | defaultExpandAll | `boolean` | `false` | 是否默认展开所有目录 |
 | expandedKeys | `string[]` | - | （受控）展开的节点 key 数组 |
+| selectedPath | `string` | - | 选中的文件/目录路径，用于高亮显示 |
 | onExpand | `(keys: string[], info: { node, expanded, nativeEvent }) => void` | - | 展开/收起节点时的回调 |
 | onFileClick | `(data: FileItem, key: string) => void` | - | 点击文件时的回调 |
 
