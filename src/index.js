@@ -6,7 +6,7 @@ import style from './style.module.scss';
 import TreeNode from './TreeNode';
 import { convertToTreeData } from './fileUtils';
 
-const FileSystemView = withLocale(({ data, menuItems, defaultExpandAll, expandedKeys: controlledExpandedKeys, onExpand, onFileClick }) => {
+const FileSystemView = withLocale(({ data, menuItems, defaultExpandAll, expandedKeys: controlledExpandedKeys, selectedPath, onExpand, onFileClick }) => {
   const rootRef = useRef(null);
   const { formatMessage } = useIntl();
   const [internalExpandedKeys, setInternalExpandedKeys] = useState([]);
@@ -60,8 +60,8 @@ const FileSystemView = withLocale(({ data, menuItems, defaultExpandAll, expanded
   }, [defaultExpandAll, initialExpandedKeys, controlledExpandedKeys]);
 
   const renderTreeNode = useCallback(
-    node => <TreeNode rootRef={rootRef} node={node} menuItems={menuItems} expandedKeys={expandedKeys} onToggle={handleToggle} onFileClick={onFileClick} />,
-    [menuItems, expandedKeys, handleToggle, onFileClick]
+    node => <TreeNode rootRef={rootRef} node={node} menuItems={menuItems} expandedKeys={expandedKeys} selectedPath={selectedPath} onToggle={handleToggle} onFileClick={onFileClick} />,
+    [menuItems, expandedKeys, selectedPath, handleToggle, onFileClick]
   );
 
   if (!data || data.length === 0) {

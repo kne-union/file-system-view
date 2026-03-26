@@ -5,9 +5,10 @@ import { getFileIcon, splitFileName } from './fileUtils';
 import style from './style.module.scss';
 
 // 自定义树节点
-const TreeNode = ({ node, menuItems, expandedKeys, onToggle, onFileClick, rootRef }) => {
+const TreeNode = ({ node, menuItems, expandedKeys, selectedPath, onToggle, onFileClick, rootRef }) => {
   const { key, title, isDirectory, isLeaf, data } = node;
   const isExpanded = expandedKeys.includes(key);
+  const isSelected = selectedPath === key;
   const { icon: IconComponent, color } = getFileIcon(title, isDirectory, isExpanded);
   const { name: fileName, ext } = splitFileName(title, isDirectory);
 
@@ -38,7 +39,7 @@ const TreeNode = ({ node, menuItems, expandedKeys, onToggle, onFileClick, rootRe
   }, [isDirectory, onToggle, onFileClick, key, isExpanded, data]);
 
   return (
-    <div className={style['tree-node']} onClick={handleNodeClick}>
+    <div className={`${style['tree-node']}${isSelected ? ` ${style['selected']}` : ''}`} onClick={handleNodeClick}>
       <span className={style['node-icon']} style={{ color }}>
         <IconComponent />
       </span>

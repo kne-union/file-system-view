@@ -1,6 +1,6 @@
 {
   "name": "@kne/file-system-view",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A React component for displaying file directory structure with tree view, file type icons and context menu",
   "syntax": {
     "esmodules": true
