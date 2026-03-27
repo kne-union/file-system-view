@@ -99,6 +99,7 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
+    "@ant-design/icons": "^6.1.1",
     "@kne/react-intl": "^0.1.9"
   }
 }

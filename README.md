@@ -19,6 +19,7 @@ npm i --save @kne/file-system-view
 - 📁 **树形结构** - 支持多级目录展示，文件夹可展开/收起，带有层级连接线
 - 🎨 **文件图标** - 自动识别 20+ 种文件类型，显示对应图标
 - ⚡ **操作菜单** - hover 显示操作按钮，支持自定义菜单项
+- 🎯 **文件状态** - 支持显示文件状态（新增/修改/删除），用不同颜色标识
 - 🌐 **国际化** - 内置中英文支持
 - 📱 **美观易用** - 精心设计的交互和视觉样式
 
@@ -44,7 +45,7 @@ const fileData = [
         name: 'components',
         type: 'directory',
         children: [
-          { name: 'Button.tsx', type: 'file' },
+          { name: 'Button.tsx', type: 'file', status: 'modified' },
           { name: 'Input.tsx', type: 'file' },
           { name: 'Modal.tsx', type: 'file' },
         ],
@@ -54,11 +55,11 @@ const fileData = [
         type: 'directory',
         children: [
           { name: 'format.js', type: 'file' },
-          { name: 'request.js', type: 'file' },
+          { name: 'request.js', type: 'file', status: 'modified' },
         ],
       },
       { name: 'index.ts', type: 'file' },
-      { name: 'App.tsx', type: 'file' },
+      { name: 'App.tsx', type: 'file', status: 'modified' },
       { name: 'styles.scss', type: 'file' },
     ],
   },
@@ -68,14 +69,14 @@ const fileData = [
     children: [
       { name: 'index.html', type: 'file' },
       { name: 'favicon.svg', type: 'file' },
-      { name: 'logo.png', type: 'file' },
+      { name: 'logo.png', type: 'file', status: 'added' },
     ],
   },
   {
     name: 'docs',
     type: 'directory',
     children: [
-      { name: 'README.md', type: 'file' },
+      { name: 'README.md', type: 'file', status: 'added' },
       { name: 'API.md', type: 'file' },
       { name: 'guide.pdf', type: 'file' },
       { name: 'very-long-file-name-that-demonstrates-text-overflow-handling-in-the-component-v2.0.0-final.pdf', type: 'file' },
@@ -105,7 +106,7 @@ const fileData = [
       },
     ],
   },
-  { name: 'package.json', type: 'file' },
+  { name: 'package.json', type: 'file', status: 'modified' },
   { name: 'tsconfig.json', type: 'file' },
   { name: '.gitignore', type: 'file' },
 ];
@@ -246,6 +247,139 @@ render(<ControlledExample />);
 
 ```
 
+- 文件状态
+- 展示文件状态功能，支持显示新增、修改、删除等状态，用不同颜色标识
+- _FileSystemView(@kne/current-lib_file-system-view)[import * as _FileSystemView from "@kne/file-system-view"],(@kne/current-lib_file-system-view/dist/index.css)[import "@kne/file-system-view/dist/index.css"],antd(antd)[import * as antd from "antd"]
+
+```jsx
+const { default: FileSystemView } = _FileSystemView;
+const { message, Space, Button } = antd;
+const { useState } = React;
+
+const StatusExample = () => {
+  const [fileData, setFileData] = useState([
+    {
+      name: 'src',
+      type: 'directory',
+      children: [
+        {
+          name: 'components',
+          type: 'directory',
+          children: [
+            { name: 'Button.tsx', type: 'file', status: 'modified' },
+            { name: 'Input.tsx', type: 'file' },
+            { name: 'NewComponent.tsx', type: 'file', status: 'added' },
+          ],
+        },
+        {
+          name: 'utils',
+          type: 'directory',
+          children: [
+            { name: 'format.js', type: 'file' },
+            { name: 'request.js', type: 'file', status: 'modified' },
+            { name: 'deprecated.js', type: 'file', status: 'deleted' },
+          ],
+        },
+        { name: 'index.ts', type: 'file' },
+        { name: 'App.tsx', type: 'file', status: 'modified' },
+      ],
+    },
+    {
+      name: 'public',
+      type: 'directory',
+      children: [
+        { name: 'index.html', type: 'file' },
+        { name: 'new-logo.svg', type: 'file', status: 'added' },
+      ],
+    },
+    { name: 'package.json', type: 'file', status: 'modified' },
+    { name: 'README.md', type: 'file', status: 'added' },
+    { name: 'old-config.js', type: 'file', status: 'deleted' },
+  ]);
+
+  const menuItems = [
+    {
+      label: '打开',
+      onClick: (data, key) => message.info(&#96;打开: ${key}&#96;),
+    },
+    {
+      label: '查看更改',
+      onClick: (data, key) => {
+        if (data.status) {
+          message.info(&#96;文件状态: ${data.status}&#96;);
+        } else {
+          message.info('文件未修改');
+        }
+      },
+    },
+  ];
+
+  const resetStatus = () => {
+    const clearStatus = (items) => {
+      return items.map(item => {
+        const newItem = { ...item };
+        delete newItem.status;
+        if (newItem.children) {
+          newItem.children = clearStatus(newItem.children);
+        }
+        return newItem;
+      });
+    };
+    setFileData(clearStatus(fileData));
+    message.success('已清除所有状态');
+  };
+
+  const addRandomStatus = () => {
+    const statuses = ['added', 'modified', 'deleted'];
+    const addStatus = (items) => {
+      return items.map(item => {
+        const newItem = { ...item };
+        if (newItem.type === 'file' && Math.random() > 0.5) {
+          newItem.status = statuses[Math.floor(Math.random() * statuses.length)];
+        }
+        if (newItem.children) {
+          newItem.children = addStatus(newItem.children);
+        }
+        return newItem;
+      });
+    };
+    setFileData(addStatus(fileData));
+    message.success('已随机添加状态');
+  };
+
+  return (
+    <div>
+      <Space style={{ marginBottom: 16 }}>
+        <Button onClick={addRandomStatus}>随机添加状态</Button>
+        <Button onClick={resetStatus}>清除所有状态</Button>
+      </Space>
+      <div style={{ padding: 24, background: '#fafafa', borderRadius: 8 }}>
+        <FileSystemView
+          data={fileData}
+          menuItems={menuItems}
+          defaultExpandAll
+          onFileClick={(data, key) => {
+            const statusText = data.status ? &#96; (${data.status})&#96; : '';
+            message.info(&#96;点击文件: ${key}${statusText}&#96;);
+          }}
+        />
+      </div>
+      <div style={{ marginTop: 16, padding: 16, background: '#f0f0f0', borderRadius: 8 }}>
+        <h4>状态说明：</h4>
+        <ul>
+          <li><span style={{ color: '#52c41a' }}>绿色 (A)</span> - 新增文件</li>
+          <li><span style={{ color: '#faad14' }}>黄色 (M)</span> - 修改文件</li>
+          <li><span style={{ color: '#ff4d4f', textDecoration: 'line-through' }}>红色删除线 (D)</span> - 删除文件</li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+render(<StatusExample />);
+
+```
+
 ### API
 
 ### Props
@@ -267,6 +401,7 @@ render(<ControlledExample />);
 | name | `string` | 文件或文件夹名称 |
 | type | `'file' \| 'directory'` | 类型，文件夹需要有 children 或 type 为 'directory' |
 | children | `FileItem[]` | 子项列表（仅文件夹） |
+| status | `'added' \| 'modified' \| 'deleted'` | 文件状态，用于显示不同颜色标识 |
 
 ### MenuItem
 
@@ -289,3 +424,19 @@ render(<ControlledExample />);
 - **音频文件**: mp3, wav, flac, aac, ogg, wma
 - **压缩文件**: zip, rar, 7z, tar, gz
 - **其他**: 默认文件图标
+
+### 文件状态
+
+通过在 FileItem 中设置 `status` 属性，可以为文件添加状态标识：
+
+- **added** (新增): 绿色文本 + 绿色 "A" 标记
+- **modified** (修改): 黄色文本 + 黄色 "M" 标记  
+- **deleted** (删除): 红色删除线文本 + 红色 "D" 标记
+
+```javascript
+{
+  name: 'Button.tsx',
+  type: 'file',
+  status: 'modified'  // 显示为修改状态
+}
+```

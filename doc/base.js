@@ -10,7 +10,7 @@ const fileData = [
         name: 'components',
         type: 'directory',
         children: [
-          { name: 'Button.tsx', type: 'file' },
+          { name: 'Button.tsx', type: 'file', status: 'modified' },
           { name: 'Input.tsx', type: 'file' },
           { name: 'Modal.tsx', type: 'file' },
         ],
@@ -20,11 +20,11 @@ const fileData = [
         type: 'directory',
         children: [
           { name: 'format.js', type: 'file' },
-          { name: 'request.js', type: 'file' },
+          { name: 'request.js', type: 'file', status: 'modified' },
         ],
       },
       { name: 'index.ts', type: 'file' },
-      { name: 'App.tsx', type: 'file' },
+      { name: 'App.tsx', type: 'file', status: 'modified' },
       { name: 'styles.scss', type: 'file' },
     ],
   },
@@ -34,14 +34,14 @@ const fileData = [
     children: [
       { name: 'index.html', type: 'file' },
       { name: 'favicon.svg', type: 'file' },
-      { name: 'logo.png', type: 'file' },
+      { name: 'logo.png', type: 'file', status: 'added' },
     ],
   },
   {
     name: 'docs',
     type: 'directory',
     children: [
-      { name: 'README.md', type: 'file' },
+      { name: 'README.md', type: 'file', status: 'added' },
       { name: 'API.md', type: 'file' },
       { name: 'guide.pdf', type: 'file' },
       { name: 'very-long-file-name-that-demonstrates-text-overflow-handling-in-the-component-v2.0.0-final.pdf', type: 'file' },
@@ -71,7 +71,7 @@ const fileData = [
       },
     ],
   },
-  { name: 'package.json', type: 'file' },
+  { name: 'package.json', type: 'file', status: 'modified' },
   { name: 'tsconfig.json', type: 'file' },
   { name: '.gitignore', type: 'file' },
 ];

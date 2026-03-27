@@ -99,6 +99,27 @@
       background: rgba(22, 119, 255, 0.16);
     }
   }
+
+  // 文件状态样式
+  &.status-added {
+    .node-title {
+      color: #52c41a;
+    }
+  }
+
+  &.status-modified {
+    .node-title {
+      color: #faad14;
+    }
+  }
+
+  &.status-deleted {
+    .node-title {
+      color: #ff4d4f;
+      text-decoration: line-through;
+      opacity: 0.7;
+    }
+  }
 }
 
 .node-icon {
@@ -153,6 +174,37 @@
     color: #1677ff;
     background: rgba(22, 119, 255, 0.1);
   }
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.status-added .status-badge {
+  background: #f6ffed;
+  color: #52c41a;
+  border: 1px solid #b7eb8f;
+}
+
+.status-modified .status-badge {
+  background: #fffbe6;
+  color: #faad14;
+  border: 1px solid #ffe58f;
+}
+
+.status-deleted .status-badge {
+  background: #fff2f0;
+  color: #ff4d4f;
+  border: 1px solid #ffccc7;
 }
 
 .empty {
