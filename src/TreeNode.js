@@ -49,7 +49,7 @@ const TreeNode = ({ node, menuItems, expandedKeys, selectedPath, onToggle, onFil
       </span>
       {menu && (
         <Dropdown menu={menu} popupRender={menu => <div onClick={handleMenuClick}>{menu}</div>} trigger={['click']} placement="bottomRight" getPopupContainer={() => rootRef.current}>
-          <Button type="text" size="small" className={style['action-btn']} icon={<MoreOutlined />} onClick={handleMenuClick} />
+          <Button type="text" size="small" className={style['node-action-btn']} icon={<MoreOutlined />} onClick={handleMenuClick} />
         </Dropdown>
       )}
     </div>
