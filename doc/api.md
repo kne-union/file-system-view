@@ -17,6 +17,7 @@
 | name | `string` | 文件或文件夹名称 |
 | type | `'file' \| 'directory'` | 类型，文件夹需要有 children 或 type 为 'directory' |
 | children | `FileItem[]` | 子项列表（仅文件夹） |
+| status | `'added' \| 'modified' \| 'deleted'` | 文件状态，用于显示不同颜色标识 |
 
 ### MenuItem
 
@@ -39,3 +40,19 @@
 - **音频文件**: mp3, wav, flac, aac, ogg, wma
 - **压缩文件**: zip, rar, 7z, tar, gz
 - **其他**: 默认文件图标
+
+### 文件状态
+
+通过在 FileItem 中设置 `status` 属性，可以为文件添加状态标识：
+
+- **added** (新增): 绿色文本 + 绿色 "A" 标记
+- **modified** (修改): 黄色文本 + 黄色 "M" 标记  
+- **deleted** (删除): 红色删除线文本 + 红色 "D" 标记
+
+```javascript
+{
+  name: 'Button.tsx',
+  type: 'file',
+  status: 'modified'  // 显示为修改状态
+}
+```

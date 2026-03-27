@@ -11,6 +11,7 @@ const TreeNode = ({ node, menuItems, expandedKeys, selectedPath, onToggle, onFil
   const isSelected = selectedPath === key;
   const { icon: IconComponent, color } = getFileIcon(title, isDirectory, isExpanded);
   const { name: fileName, ext } = splitFileName(title, isDirectory);
+  const status = data?.status; // 获取文件状态: 'added', 'modified', 'deleted'
 
   const menu = useMemo(() => {
     if (!menuItems || menuItems.length === 0) return null;
@@ -39,7 +40,7 @@ const TreeNode = ({ node, menuItems, expandedKeys, selectedPath, onToggle, onFil
   }, [isDirectory, onToggle, onFileClick, key, isExpanded, data]);
 
   return (
-    <div className={`${style['tree-node']}${isSelected ? ` ${style['selected']}` : ''}`} onClick={handleNodeClick}>
+    <div className={`${style['tree-node']}${isSelected ? ` ${style['selected']}` : ''}${status ? ` ${style[`status-${status}`]}` : ''}`} onClick={handleNodeClick}>
       <span className={style['node-icon']} style={{ color }}>
         <IconComponent />
       </span>
@@ -47,6 +48,7 @@ const TreeNode = ({ node, menuItems, expandedKeys, selectedPath, onToggle, onFil
         <span className={style['node-name']}>{fileName}</span>
         {ext && <span className={style['node-ext']}>{ext}</span>}
       </span>
+      {status && <span className={style['status-badge']}>{status === 'added' ? 'A' : status === 'modified' ? 'M' : status === 'deleted' ? 'D' : ''}</span>}
       {menu && (
         <Dropdown menu={menu} popupRender={menu => <div onClick={handleMenuClick}>{menu}</div>} trigger={['click']} placement="bottomRight" getPopupContainer={() => rootRef.current}>
           <Button type="text" size="small" className={style['node-action-btn']} icon={<MoreOutlined />} onClick={handleMenuClick} />
