@@ -23,6 +23,27 @@
       ]
     },
     {
+      "title": "Hover 右侧菜单",
+      "description": "悬停节点行时右侧显示「⋯」操作按钮，点击展开菜单；用于验证 hover 显示与菜单打开态保持可见",
+      "code": "./hover-menu.js",
+      "scope": [
+        {
+          "name": "_FileSystemView",
+          "packageName": "@kne/current-lib_file-system-view",
+          "importStatement": "import * as _FileSystemView from \"@kne/file-system-view\""
+        },
+        {
+          "packageName": "@kne/current-lib_file-system-view/dist/index.css",
+          "importStatement": "import \"@kne/file-system-view/dist/index.css\""
+        },
+        {
+          "name": "antd",
+          "packageName": "antd",
+          "importStatement": "import * as antd from \"antd\""
+        }
+      ]
+    },
+    {
       "title": "简单列表",
       "description": "不包含操作菜单的简单文件列表示例",
       "code": "./simple.js",

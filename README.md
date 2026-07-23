@@ -18,8 +18,7 @@ npm i --save @kne/file-system-view
 
 - 📁 **树形结构** - 支持多级目录展示，文件夹可展开/收起，带有层级连接线
 - 🎨 **文件图标** - 自动识别 20+ 种文件类型，显示对应图标
-- ⚡ **操作菜单** - hover 显示操作按钮，支持自定义菜单项
-- 🎯 **文件状态** - 支持显示文件状态（新增/修改/删除），用不同颜色标识
+- ⚡ **操作菜单** - hover 行时右侧显示「⋯」按钮，支持自定义菜单项；菜单打开期间按钮保持可见
 - 🌐 **国际化** - 内置中英文支持
 - 📱 **美观易用** - 精心设计的交互和视觉样式
 
@@ -149,6 +148,90 @@ const BaseExample = () => {
 };
 
 render(<BaseExample />);
+
+```
+
+- Hover 右侧菜单
+- 悬停节点行时右侧显示「⋯」操作按钮，点击展开菜单；用于验证 hover 显示与菜单打开态保持可见
+- _FileSystemView(@kne/current-lib_file-system-view)[import * as _FileSystemView from "@kne/file-system-view"],(@kne/current-lib_file-system-view/dist/index.css)[import "@kne/file-system-view/dist/index.css"],antd(antd)[import * as antd from "antd"]
+
+```jsx
+const { default: FileSystemView } = _FileSystemView;
+const { Alert, Flex, Typography, message } = antd;
+const { Text, Paragraph } = Typography;
+
+const fileData = [
+  {
+    name: 'src',
+    type: 'directory',
+    children: [
+      { name: 'App.tsx', type: 'file' },
+      { name: 'index.ts', type: 'file' },
+      {
+        name: 'components',
+        type: 'directory',
+        children: [
+          { name: 'Button.tsx', type: 'file' },
+          { name: 'Tree.tsx', type: 'file' }
+        ]
+      }
+    ]
+  },
+  { name: 'README.md', type: 'file' },
+  { name: 'package.json', type: 'file' }
+];
+
+const menuItems = [
+  {
+    label: '打开',
+    onClick: (data, key) => message.info(&#96;打开: ${key}&#96;)
+  },
+  {
+    label: '复制路径',
+    onClick: (data, key) => {
+      navigator.clipboard?.writeText?.(key);
+      message.success(&#96;已复制路径: ${key}&#96;);
+    }
+  },
+  {
+    label: '重命名',
+    onClick: (data, key) => message.info(&#96;重命名: ${data.name} (${key})&#96;)
+  },
+  {
+    label: '删除',
+    danger: true,
+    disabled: data => data.type === 'directory' && data.children?.length > 0,
+    onClick: (data, key) => message.warning(&#96;删除: ${key}&#96;)
+  }
+];
+
+const HoverMenuExample = () => {
+  return (
+    <Flex vertical gap={16} style={{ padding: 24, background: '#fafafa', borderRadius: 8 }}>
+      <Alert
+        type="info"
+        showIcon
+        message="Hover 右侧菜单"
+        description={
+          <Paragraph style={{ marginBottom: 0 }}>
+            将鼠标移到任意文件或文件夹行上，右侧会出现「⋯」按钮；点击后打开操作菜单。离开行后按钮自动隐藏；菜单打开期间按钮保持可见。
+          </Paragraph>
+        }
+      />
+      <Text type="secondary">请在下方树节点上悬停验证右侧操作按钮</Text>
+      <div style={{ background: '#fff', borderRadius: 8, padding: 12, border: '1px solid #f0f0f0' }}>
+        <FileSystemView
+          data={fileData}
+          menuItems={menuItems}
+          defaultExpandAll
+          onFileClick={(data, key) => message.info(&#96;点击文件: ${key}&#96;)}
+        />
+      </div>
+    </Flex>
+  );
+};
+
+render(<HoverMenuExample />);
 
 ```
 
@@ -387,7 +470,7 @@ render(<StatusExample />);
 | 属性 | 类型 | 默认值 | 说明 |
 |----|----|-----|----|
 | data | `FileItem[]` | `[]` | 目录结构数据 |
-| menuItems | `MenuItem[]` | - | 操作菜单项配置，不传则不显示操作按钮 |
+| menuItems | `MenuItem[]` | - | 操作菜单项配置，不传则不显示操作按钮。传入后节点右侧「⋯」默认隐藏，**鼠标悬停行时显示**；下拉打开期间按钮保持可见 |
 | defaultExpandAll | `boolean` | `false` | 是否默认展开所有目录 |
 | expandedKeys | `string[]` | - | （受控）展开的节点 key 数组 |
 | selectedPath | `string` | - | 选中的文件/目录路径，用于高亮显示 |

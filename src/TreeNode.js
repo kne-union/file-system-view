@@ -16,14 +16,19 @@ const TreeNode = ({ node, menuItems, expandedKeys, selectedPath, onToggle, onFil
   const menu = useMemo(() => {
     if (!menuItems || menuItems.length === 0) return null;
     return {
-      items: menuItems.map((item, index) => ({
-        key: index,
-        label: item.label,
-        icon: item.icon,
-        onClick: () => item.onClick?.(data, key),
-        danger: item.danger,
-        disabled: item.disabled?.(data, key)
-      }))
+      items: menuItems.map((item, index) => {
+        if (item.type === 'divider') {
+          return { type: 'divider', key: `divider-${index}` };
+        }
+        return {
+          key: index,
+          label: item.label,
+          icon: item.icon,
+          onClick: () => item.onClick?.(data, key),
+          danger: item.danger,
+          disabled: item.disabled?.(data, key)
+        };
+      })
     };
   }, [menuItems, data, key]);
 
