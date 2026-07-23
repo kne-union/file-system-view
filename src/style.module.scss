@@ -75,17 +75,20 @@
   display: flex;
   align-items: center;
   padding: 4px 8px;
+  padding-right: 12px;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
   min-height: 28px;
   width: 100%;
+  box-sizing: border-box;
 
-  &:hover {
+  &:hover,
+  &:focus-within {
     background: rgba(0, 0, 0, 0.04);
 
-    .action-btn {
+    .node-action-btn {
       margin-left: 4px;
       opacity: 1;
       visibility: visible;
@@ -95,7 +98,8 @@
   &.selected {
     background: rgba(22, 119, 255, 0.12);
 
-    &:hover {
+    &:hover,
+    &:focus-within {
       background: rgba(22, 119, 255, 0.16);
     }
   }
@@ -164,6 +168,7 @@
   visibility: hidden;
   transition: all 0.2s ease;
   margin-left: auto;
+  margin-right: 4px;
   padding: 0 2px;
   height: 20px;
   width: 20px;
@@ -173,6 +178,11 @@
   &:hover {
     color: #1677ff;
     background: rgba(22, 119, 255, 0.1);
+  }
+
+  &:global(.ant-dropdown-open) {
+    opacity: 1;
+    visibility: visible;
   }
 }
 

@@ -3,7 +3,7 @@
 | 属性 | 类型 | 默认值 | 说明 |
 |----|----|-----|----|
 | data | `FileItem[]` | `[]` | 目录结构数据 |
-| menuItems | `MenuItem[]` | - | 操作菜单项配置，不传则不显示操作按钮 |
+| menuItems | `MenuItem[]` | - | 操作菜单项配置，不传则不显示操作按钮。传入后节点右侧「⋯」默认隐藏，**鼠标悬停行时显示**；下拉打开期间按钮保持可见 |
 | defaultExpandAll | `boolean` | `false` | 是否默认展开所有目录 |
 | expandedKeys | `string[]` | - | （受控）展开的节点 key 数组 |
 | selectedPath | `string` | - | 选中的文件/目录路径，用于高亮显示 |
